@@ -6,6 +6,7 @@ import br.com.dock.conta.domain.repositories.ContasRepository;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import java.math.BigDecimal;
 
 @Repository
 public class ContasRepositoryImpl implements ContasRepository {

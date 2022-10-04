@@ -26,14 +26,17 @@ public class ContaServiceImpl implements ContaService {
         return conta;
     }
 
+    @Transactional
     @Override
     public void bloquearConta(Conta conta) {
         conta.bloquear();
+        this.atualizar(conta);
     }
 
     @Override
-    public BigDecimal consultarSaldo(Conta conta) {
-        return null;
+    public BigDecimal consultarSaldo(Long idConta) {
+        var conta= this.contasRepository.buscarPorId(idConta);
+        return conta.getSaldo();
     }
 
     @Override
@@ -53,9 +56,5 @@ public class ContaServiceImpl implements ContaService {
         if (conta != null) {
             throw new ContaDuplicadaException("Essa pessoa já possui uma conta desse tipo");
         }
-    }
-
-    private void validaLimiteDeSaqueDiarioTransacionado(Long idConta) {
-
     }
 }

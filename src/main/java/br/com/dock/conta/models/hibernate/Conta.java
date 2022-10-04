@@ -36,7 +36,13 @@ public class Conta {
     @Column(name = "data_criacao", nullable = false)
     private LocalDate dataCriacao;
 
-    public Conta(Long idConta, Pessoa pessoa, BigDecimal saldo, BigDecimal limiteSaqueDiario, boolean flagAtivo, short tipoConta, LocalDate dataCriacao) {
+    public Conta(Long idConta,
+                 Pessoa pessoa,
+                 BigDecimal saldo,
+                 BigDecimal limiteSaqueDiario,
+                 boolean flagAtivo,
+                 short tipoConta,
+                 LocalDate dataCriacao) {
         this.idConta = idConta;
         this.pessoa = pessoa;
         this.saldo = saldo;
@@ -56,7 +62,8 @@ public class Conta {
         this.dataCriacao = entity.getDataCriacao();
     }
 
-    public Conta() {}
+    public Conta() {
+    }
 
     public Long getIdConta() {
         return idConta;
@@ -69,6 +76,7 @@ public class Conta {
     public List<Transacao> getTransacoes() {
         return transacoes;
     }
+
     public BigDecimal getSaldo() {
         return saldo;
     }

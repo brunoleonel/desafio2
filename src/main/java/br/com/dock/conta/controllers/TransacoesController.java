@@ -7,6 +7,7 @@ import br.com.dock.conta.core.entities.Transacao;
 import br.com.dock.conta.core.exceptions.DomainException;
 import br.com.dock.conta.domain.services.ContaService;
 import br.com.dock.conta.domain.services.TransacoesService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -25,32 +26,32 @@ public class TransacoesController extends BaseController {
     }
 
     @PostMapping("/{idConta}/depositos")
-    public TransacaoResponse depositar(
+    public ResponseEntity<TransacaoResponse> depositar(
             @PathVariable Long idConta,
             @Valid @RequestBody TransacaoRequest transacaoRequest) throws DomainException {
         var conta = this.contaService.buscarConta(idConta);
-        var transacao = new Transacao(//new Deposito(
+        var transacao = new Transacao(
                 null,
                 conta,
                 transacaoRequest.getValor(),
                 TipoTransacao.CREDITO,
                 LocalDate.now());
-        this.transacoesService.criaTransacao(transacao);
-        return new TransacaoResponse(transacao);
+        this.transacoesService.criarTransacao(transacao);
+        return ResponseEntity.ok(new TransacaoResponse(transacao));
     }
 
     @PostMapping("/{idConta}/saques")
-    public TransacaoResponse sacar(
+    public ResponseEntity<TransacaoResponse> sacar(
             @PathVariable Long idConta,
             @Valid @RequestBody TransacaoRequest transacaoRequest) throws DomainException {
         var conta = this.contaService.buscarConta(idConta);
-        var transacao = new Transacao(//Saque(
+        var transacao = new Transacao(
                 null,
                 conta,
                 transacaoRequest.getValor(),
                 TipoTransacao.DEBITO,
                 LocalDate.now());
-        this.transacoesService.criaTransacao(transacao);
-        return new TransacaoResponse(transacao);
+        this.transacoesService.criarTransacao(transacao);
+        return ResponseEntity.ok(new TransacaoResponse(transacao));
     }
 }

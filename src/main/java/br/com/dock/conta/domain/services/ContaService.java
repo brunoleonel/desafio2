@@ -9,7 +9,7 @@ public interface ContaService {
 
     Conta criarConta(Conta conta) throws ContaDuplicadaException;
     void bloquearConta(Conta conta);
-    BigDecimal consultarSaldo(Conta conta);
+    BigDecimal consultarSaldo(Long idConta);
     Conta buscarConta(Long idConta);
     Conta atualizar(Conta conta);
 }

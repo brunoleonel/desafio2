@@ -1,10 +1,17 @@
 package br.com.dock.conta.domain.repositories;
 
 import br.com.dock.conta.core.entities.Transacao;
-import org.springframework.transaction.annotation.Transactional;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.List;
 
 public interface TransacoesRepository {
     Transacao buscarPorId(Long idTransacao);
+
     void criar(Transacao transacao);
-    void atualizar(Transacao transacao);
+
+    BigDecimal consultaValorTransacionadoDia(Long idConta);
+
+    List<Transacao> listarTransacoesPorPeriodo(Long idConta, LocalDate dataInicial, LocalDate dataFinal);
 }

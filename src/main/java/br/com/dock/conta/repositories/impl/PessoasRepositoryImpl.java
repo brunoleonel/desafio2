@@ -23,18 +23,4 @@ public class PessoasRepositoryImpl implements PessoasRepository {
         var model = this.entityManager.find(br.com.dock.conta.models.hibernate.Pessoa.class, id);
         return this.pessoaAdapter.novaPessoa(model);
     }
-
-    @Override
-    public void criar(Pessoa pessoa) {
-        var model = this.pessoaAdapter.toModel(pessoa);
-        this.entityManager.persist(model);
-        this.pessoaAdapter.toEntity(model, pessoa);
-    }
-
-    @Override
-    public void atualizar(Pessoa pessoa) {
-        var model = this.pessoaAdapter.toModel(pessoa);
-        this.entityManager.merge(model);
-        this.pessoaAdapter.toEntity(model, pessoa);
-    }
 }
