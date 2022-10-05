@@ -1,0 +1,166 @@
+{
+	"info": {
+		"_postman_id": "48c05ea4-f0cd-4a71-bc21-d3c8d31e98a9",
+		"name": "Contas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "423179"
+	},
+	"item": [
+		{
+			"name": "Criar conta",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id_pessoa\": 1,\n    \"limite_saque_diario\": 2000.00,\n    \"tipo_conta\": 2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/contas",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"contas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Depósito",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"valor\": 3000.00\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/transacoes/1/depositos",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"transacoes",
+						"1",
+						"depositos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Saque",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"valor\": 1000.00\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/transacoes/1/saques",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"transacoes",
+						"1",
+						"saques"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Saldo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/contas/1/saldos",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"contas",
+						"1",
+						"saldos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bloqueio",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/contas/2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"contas",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Extrato",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/contas/1/extratos",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"contas",
+						"1",
+						"extratos"
+					],
+					"query": [
+						{
+							"key": "dataInicial",
+							"value": "02-10-2022",
+							"disabled": true
+						},
+						{
+							"key": "dataFinal",
+							"value": "03-10-2022",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,3 +1,20 @@
+### Como rodar:
+Para subir a aplicação verifique se o **Docker** e o **docker-compose** estão instalados no seu ambiente.
+Se estiverem, rode o comando abaixo:
+```
+docker-compose -f ./docker/docker-compose.yml build
+```
+Após a finalização do build, rode:
+```
+docker-compose -f ./docker/docker-compose.yml up
+```
+**OBS:** Caso você tenha o PostgreSQL rodando na sua máquina, a porta do container do banco de dados pode
+conflitar com a do serviço da sua máquina. Talvez seja necessário parar o serviço para conseguir rodar a aplicação.
+
+* Os modelos de request estão na coleção **Contas.postman_collection.json** na raiz do projeto.
+* As classes do domínio da aplicação estão documentadas no javadoc dentro de resources.
+
+---
 
 ### Desafio Dock Tech de Seleção 
 Olá, queremos convidá-lo a participar de nosso desafio de seleção.  Pronto para participar? Seu trabalho será visto por nosso time e você receberá ao final um feedback sobre o que achamos do seu trabalho. Não é legal?
