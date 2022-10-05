@@ -1,0 +1,26 @@
+version: '3.3'
+
+services:
+  app:
+    build:
+      dockerfile: ./docker/Dockerfile
+      context: ../
+    container_name: app
+    depends_on:
+      - db
+    ports:
+      - 8080:8080
+    links:
+      - db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/controle_contas?currentSchema=public
+  db:
+    image: postgres:14.5-alpine
+    container_name: db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=controle_contas
+      - PG_DATA=/data
+    ports:
+      - 5432:5432
