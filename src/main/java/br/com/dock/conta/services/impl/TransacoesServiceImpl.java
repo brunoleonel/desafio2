@@ -48,7 +48,7 @@ public class TransacoesServiceImpl implements TransacoesService {
     public BigDecimal calcularLimiteRestante(Conta conta) {
         var valor = this.transacoesRepository.consultaValorTransacionadoDia(conta.getIdConta());
         var restante = conta.getLimiteSaqueDiario().subtract(valor);
-        return restante.compareTo(conta.getLimiteSaqueDiario()) <= 0 ? BigDecimal.ZERO : restante;
+        return restante.compareTo(BigDecimal.ZERO) <= 0 ? BigDecimal.ZERO : restante;
     }
 
     @Override

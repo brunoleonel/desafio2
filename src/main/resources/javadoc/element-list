@@ -1,0 +1,14 @@
+br.com.dock.conta
+br.com.dock.conta.adapters
+br.com.dock.conta.controllers
+br.com.dock.conta.controllers.requests
+br.com.dock.conta.controllers.responses
+br.com.dock.conta.core
+br.com.dock.conta.core.entities
+br.com.dock.conta.core.exceptions
+br.com.dock.conta.domain.repositories
+br.com.dock.conta.domain.services
+br.com.dock.conta.models.hibernate
+br.com.dock.conta.repositories.impl
+br.com.dock.conta.services
+br.com.dock.conta.services.impl

@@ -3,6 +3,9 @@ package br.com.dock.conta.core.entities;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+/**
+ * Representação de transações (depósitos e saques) e seus comportamentos
+ */
 public class Transacao {
 
     protected Long idTransacao;
@@ -24,6 +27,9 @@ public class Transacao {
         this.dataTransacao = dataTransacao;
     }
 
+    /**
+     * Executa a transação de débito (saque) ou crédito (depósito)
+     */
     public void executa() {
         if (TipoTransacao.CREDITO.equals(this.tipoTransacao)) {
             this.conta.creditar(this.getValor());

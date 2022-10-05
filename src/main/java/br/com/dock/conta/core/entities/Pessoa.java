@@ -2,6 +2,9 @@ package br.com.dock.conta.core.entities;
 
 import java.time.LocalDate;
 
+/**
+ * Representação de uma pessoa
+ */
 public class Pessoa {
 
     private Long idPessoa;

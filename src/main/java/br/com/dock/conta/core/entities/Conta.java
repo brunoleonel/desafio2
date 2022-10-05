@@ -7,6 +7,9 @@ import br.com.dock.conta.core.exceptions.SaldoInsuficienteException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+/**
+ * Representação de uma conta e seus comportamentos
+ */
 public class Conta {
 
     private Long idConta;
@@ -49,32 +52,57 @@ public class Conta {
         this.dataCriacao = dataCriacao;
     }
 
+    /**
+     * Valida se a conta foi bloqueada
+     * @throws ContaInativaException
+     */
     public void validarStatus() throws ContaInativaException {
         if (!this.flagAtivo) {
             throw new ContaInativaException("Conta inativa");
         }
     }
 
+    /**
+     * Valida se o valor de uma transação excede o limite de saque diário
+     * @param valor Valor do saque
+     * @throws LimiteDeSaqueDiarioExcedidoException
+     */
     public void validarLimiteSaqueDiario(BigDecimal valor) throws LimiteDeSaqueDiarioExcedidoException {
         if (valor.compareTo(this.getLimiteSaqueDiario()) > 0) {
             throw new LimiteDeSaqueDiarioExcedidoException("Limite de saque diário excedido.");
         }
     }
 
+    /**
+     * Valida se existe saldo o suficiente na conta para executar um saque
+     * @param valor Valor do saque
+     * @throws SaldoInsuficienteException
+     */
     public void validarSaldo(BigDecimal valor) throws SaldoInsuficienteException {
         if (valor.compareTo(this.getSaldo()) > 0) {
             throw new SaldoInsuficienteException("Saldo insuficiente.");
         }
     }
 
+    /**
+     * Credita o valor de um depósito no saldo da conta
+     * @param valor Valor do depósito
+     */
     public void creditar(BigDecimal valor) {
         this.saldo = this.saldo.add(valor);
     }
 
+    /**
+     * Debita o valor de um saque no saldo da conta
+     * @param valor Valor do saque
+     */
     public void debitar(BigDecimal valor) {
         this.saldo = this.saldo.subtract(valor);
     }
 
+    /**
+     * Realiza o bloqueio da conta
+     */
     public void bloquear() {
         this.flagAtivo = false;
     }
