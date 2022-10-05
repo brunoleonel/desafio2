@@ -65,4 +65,18 @@ public class ContaServiceTest {
         service.bloquearConta(conta);
         assertEquals(false, conta.isFlagAtivo());
     }
+
+    @Test
+    @DisplayName("Testa a consulta de saldo")
+    public void testaConsultaSaldo() {
+        var conta = Mockito.mock(Conta.class);
+        Mockito.when(conta.getSaldo()).thenReturn(BigDecimal.TEN);
+
+        var repo = Mockito.mock(ContasRepositoryImpl.class);
+        Mockito.when(repo.buscarPorId(1L)).thenReturn(conta);
+        var service = new ContaServiceImpl(repo);
+        var result = service.consultarSaldo(1L);
+
+        assertEquals(BigDecimal.TEN, conta.getSaldo());
+    }
 }
