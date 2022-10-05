@@ -2,10 +2,6 @@
 Para subir a aplicação verifique se o **Docker** e o **docker-compose** estão instalados no seu ambiente.
 Se estiverem, rode o comando abaixo:
 ```
-docker-compose -f ./docker/docker-compose.yml build
-```
-Após a finalização do build, rode:
-```
 docker-compose -f ./docker/docker-compose.yml up
 ```
 **OBS:** Caso você tenha o PostgreSQL rodando na sua máquina, a porta do container do banco de dados pode

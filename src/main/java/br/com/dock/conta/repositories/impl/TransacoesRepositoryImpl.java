@@ -41,14 +41,19 @@ public class TransacoesRepositoryImpl implements TransacoesRepository {
         var valor= this.entityManager.createQuery(
                 """
                         SELECT SUM(t.valor) FROM Transacao t 
-                        WHERE t.dataTransacao = :dataTransacao
-                        AND t.tipoTransacao = :tipoTransacao""",
+                        WHERE t.conta.idConta = :idConta
+                            AND t.dataTransacao = :dataTransacao
+                            AND t.tipoTransacao = :tipoTransacao
+                        GROUP BY t.conta.idConta""",
                         BigDecimal.class)
+                .setParameter("idConta", idConta)
                 .setParameter("dataTransacao", LocalDate.now())
                 .setParameter("tipoTransacao", TipoTransacao.DEBITO)
-                .getSingleResult();
+                .getResultStream()
+                .findFirst()
+                .orElse(BigDecimal.ZERO);
 
-        return valor != null ? valor : BigDecimal.ZERO;
+        return valor;
     }
 
     @Override
